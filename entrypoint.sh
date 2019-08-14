@@ -10,7 +10,8 @@ fi
 
 if [ -n "${UID:-}" ]; then
     chmod go+w /dev/stderr /dev/stdout
-    gosu $UID mkdir -p /media/.tmp
+    mkdir -p /media/.tmp
+    chown $UID:$UID /media/.tmp
     exec gosu $UID "$@"
 else
     mkdir -p /media/.tmp
